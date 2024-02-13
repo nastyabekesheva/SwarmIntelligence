@@ -134,18 +134,3 @@ class GeneticOptimizer:
         smallest_keys = [item[1] for item in smallest_items]'''
                    
             
-import math 
-
-def harmonic(x):
-    return (x**3) * ((3-x)**5) * math.sin(10 * math.pi * x)
-
-def izum(x, y):
-    return - math.cos(x) * math.cos(y) * math.exp(-(x-math.pi) ** 2 -(y-math.pi) ** 2)
-
-def erkli(x, y):
-    return (-20 * math.exp(-0.2 * math.sqrt(0.5 * (x ** 2 + y ** 2))) - math.exp(0.5 * (math.cos(2 * math.pi * x) + math.cos(2 * math.pi * y))) + math.exp(1) + 20)
-
-GO = GeneticOptimizer(izum, [[-100, 100], [-100, 100]], epochs=15, population_size=50, dimensions=2)
-#GO = GeneticOptimizer(harmonic, [[0, 3]], epochs=30, population_size=10, dimensions=1)
-print(GO.fit())
-print(GO._meta)
