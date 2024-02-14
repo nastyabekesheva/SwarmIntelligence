@@ -3,7 +3,7 @@ import numpy as np
 import imageio
 
 class Visualizer:
-    def __init__(self, data, func, interval, fps=10, filename="f", dimensions=1):
+    def __init__(self, data, func, interval, fps=10, filename="f", dimensions=1, best=None):
         self.population = data["population"]
         self.fitness = data["fitness"]
         self.func = func
@@ -11,6 +11,7 @@ class Visualizer:
         self.fps = fps
         self.filename = filename
         self.dimensions = dimensions
+        self.best = best
     
     def animate_growth(self):
         if self.dimensions == 1:
@@ -21,9 +22,12 @@ class Visualizer:
             print("Too many dimensions")
 
     def fitness_trend(self):
+        fitness = np.array(self.fitness)
+        fitness = fitness.T
+
         fig = plt.figure()
-        for i in range(len(self.fitness)):
-            plt.plot(self.fitness[i])
+        for i in range(len(fitness)):
+            plt.plot(fitness[i])
 
         # Add labels and title
         plt.xlabel('Epoch')
@@ -33,12 +37,11 @@ class Visualizer:
         plt.close(fig)
         
     def distances(self):
+
+        best_fitness =  np.array([self.func(*args) for args in self.best])
+
         fig = plt.figure()
-        row_diff = np.diff(self.fitness, axis=0)
-
-        # Calculate the Euclidean distance between consecutive rows
-        distance = np.linalg.norm(row_diff, axis=1)
-
+        distance = np.diff(best_fitness)
 
         # Plot the differences
         plt.plot(distance)
@@ -47,7 +50,7 @@ class Visualizer:
         plt.xlabel('Epoch')
         plt.ylabel('Distance')
         plt.title('Distance between min values')
-        plt.savefig(f'distances_HARMONIC.png')
+        plt.savefig(f'distances_{self.filename}.png')
         plt.close(fig)
 
 
@@ -61,7 +64,7 @@ class Visualizer:
             ax.plot(x_population, y_fitness, 'bo', label='Fitness')
             
             # Plot harmonic function
-            x_smooth = np.linspace(self.interval[0], self.interval[1], 100)
+            x_smooth = np.linspace(self.interval[0], self.interval[1], 300)
             y_smooth = self.func(x_smooth)
             ax.plot(x_smooth, y_smooth, 'r-', label=f'{self.filename} Function')
             
