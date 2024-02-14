@@ -1,5 +1,4 @@
 import random
-#from itertools import product
 import numpy as np
 import re
 
@@ -23,18 +22,23 @@ def float_to_bin(value, interval):
     return new
 
 class GeneticOptimizer:
-    def __init__(self, fitness, interval, epochs=10, population_size=2, dimensions=1, patience=None):
+
+    """
+    Optimizer for n-dimensional function
+    """
+
+    def __init__(self, fitness, interval, epochs=10, population_size=10, dimensions=1, patience=None):
         #population_size must be even
         if population_size % 2 != 0:
             print("Population size must be even")
             return None
         elif len(interval) != dimensions:
-            print("Dimension of intervals do not math the dimension you provided")
+            print("Dimension of intervals do not match the dimension you provided")
             return None
         self.fitness = fitness
         self.interval = interval
         self.epochs = epochs
-        self.population_size =  int(2 * (population_size / 2 ))   
+        self.population_size = population_size
         self.dimensions = dimensions 
         self.patience = patience
         self._meta = {"population": [], "fitness": []}
@@ -45,6 +49,15 @@ class GeneticOptimizer:
         population = []
         for i in range(self.dimensions):
             population.append([random.uniform(*self.interval[i]) for _ in range(self.population_size)])
+        
+        fitness = []
+        for args in zip(*population):
+            result = self.fitness(*args)
+            fitness.append(result)
+        # save first population
+        self._meta["population"].append(population)
+        self._meta["fitness"].append(fitness)
+
         if self.patience:
             no_change = 0
         while (i < self.epochs):
@@ -52,7 +65,7 @@ class GeneticOptimizer:
             population = self.__get_fitest__(population, new_population)
             i += 1
             if self.patience:
-                if self.__get_fittest_individual__(self.meta["population"][i]) == self.__get_fittest_individual__(self.meta["population"][i-1]):
+                if self.__get_fittest_individual__(self._meta["population"][i]) == self.__get_fittest_individual__(self._meta["population"][i-1]):
                     no_change += 1
                 else:
                     no_change = 0
@@ -88,7 +101,7 @@ class GeneticOptimizer:
         return offsprings
     
     def __get_fitest__(self, population, new_population):
-        #print(population)
+
         best_individuals = population
         best_fitness = []
         
