@@ -23,8 +23,8 @@ def float_to_bin(value, interval):
     return new
 
 class GeneticOptimizer:
-    #population_size must be even
-    def __init__(self, fitness, interval, epochs=10, population_size=2, dimensions=1):
+    def __init__(self, fitness, interval, epochs=10, population_size=2, dimensions=1, patience=None):
+        #population_size must be even
         if population_size % 2 != 0:
             print("Population size must be even")
             return None
@@ -36,6 +36,7 @@ class GeneticOptimizer:
         self.epochs = epochs
         self.population_size =  int(2 * (population_size / 2 ))   
         self.dimensions = dimensions 
+        self.patience = patience
         self._meta = {"population": [], "fitness": []}
 
     def fit(self):
@@ -44,10 +45,19 @@ class GeneticOptimizer:
         population = []
         for i in range(self.dimensions):
             population.append([random.uniform(*self.interval[i]) for _ in range(self.population_size)])
+        if self.patience:
+            no_change = 0
         while (i < self.epochs):
             new_population = self.__new_generation__(population)
             population = self.__get_fitest__(population, new_population)
             i += 1
+            if self.patience:
+                if self.__get_fittest_individual__(self.meta["population"][i]) == self.__get_fittest_individual__(self.meta["population"][i-1]):
+                    no_change += 1
+                else:
+                    no_change = 0
+                if no_change == self.patience:
+                    break 
 
         return self.__get_fittest_individual__(population)
         
