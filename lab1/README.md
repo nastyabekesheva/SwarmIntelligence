@@ -21,7 +21,7 @@
 ### Harmonic function
 
 $$
-f(x) = x^3(3-x)^5\sin(10\pi x), x\in[0,3]
+f(x) = x^3(3-x)^5\sin(10\pi x),\> x\in[0,3]
 $$
 
 **Expected minimum**: $$f(1.15)=-33$$
@@ -56,10 +56,10 @@ $$
 ### Parametric function
 
 $$
-f(x) = -(0.2-x)^5(0.8-x)^12\sin(12\pi x)\sin(9\pi x), x\in[0,3]
+f(x) = -(0.2-x)^5(0.8-x)^12\sin(12\pi x)\sin(9\pi x),\> x\in[0,3]
 $$
 
-**Expected minimum**: $$f(3)=1.5\cdot 10^(-6)$$
+**Expected minimum**: $$f(3)=1.5\cdot 10^{-6}$$
 
 > Genetic Optimizer plot on each epoch:
 
@@ -84,3 +84,67 @@ $$
 > Grey Wolf Optimizer distance between optimal values on each plot:
 
 ![](distances_PARAMETRIC_GWO.png)
+
+### Easom function
+
+$$
+f(x, y) = -\cos(x)\cos(y)e^{-(x-\pi)^2-(y-\pi)^2},\> (x,y)\in\[-100,100\]^2
+$$
+
+**Expected minimum**: $$f(\pi,\pi)=-1$$
+
+> Genetic Optimizer plot on each epoch:
+
+![](animated_EASOM_GO.gif) 
+
+> Grey Wolf Optimizer plot on each epoch:
+
+![](animated_EASOM_GWO.gif)
+
+> Genetic Optimizer fitness trend plot:
+
+![](fitness_trend_EASOM_GO.png)
+
+> Grey Wolf Optimizer fitness trend plot:
+
+![](fitness_trend_EASOM_GWO.png)
+
+> Genetic Optimizer distance between optimal values on each plot:
+
+![](distances_EASOM_GO.png)
+
+> Grey Wolf Optimizer distance between optimal values on each plot:
+
+![](distances_EASOM_GWO.png)
+
+### Ackley function
+
+$$
+f(x, y) = -20e^{-0.2\sqrt{0.5(x^2+y^2)}} - e^{0.5(\cos2\pi x+\cos2\pi y)},\> (x,y)\in\[-5,5\]^2
+$$
+
+**Expected minimum**: $$f(0,0)=0$$
+
+> Genetic Optimizer plot on each epoch:
+
+![](animated_ACKLEY_GO.gif) 
+
+> Grey Wolf Optimizer plot on each epoch:
+
+![](animated_ACKLEY_GWO.gif)
+
+> Genetic Optimizer fitness trend plot:
+
+![](fitness_trend_ACKLEY_GO.png)
+
+> Grey Wolf Optimizer fitness trend plot:
+
+![](fitness_trend_ACKLEY_GWO.png)
+
+> Genetic Optimizer distance between optimal values on each plot:
+
+![](distances_ACKLEY_GO.png)
+
+> Grey Wolf Optimizer distance between optimal values on each plot:
+
+![](distances_ACKLEY_GWO.png)
