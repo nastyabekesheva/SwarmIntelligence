@@ -49,3 +49,38 @@ $$
 > Grey Wolf Optimizer distance between optimal values on each plot:
 
 ![](distances_HARMONIC_GWO.png)
+
+-----
+
+
+### Parametric function
+
+$$
+f(x) = -(0.2-x)^5(0.8-x)^12\sin(12\pi x)\sin(9\pi x), x\in[0,3]
+$$
+
+**Expected minimum**: $$f(3)=1.5\cdot 10^(-6)$$
+
+> Genetic Optimizer plot on each epoch:
+
+![](animated_PARAMETRIC_GO.gif) 
+
+> Grey Wolf Optimizer plot on each epoch:
+
+![](animated_PARAMETRIC_GWO.gif)
+
+> Genetic Optimizer fitness trend plot:
+
+![](fitness_trend_PARAMETRIC_GO.png)
+
+> Grey Wolf Optimizer fitness trend plot:
+
+![](fitness_trend_PARAMETRIC_GWO.png)
+
+> Genetic Optimizer distance between optimal values on each plot:
+
+![](distances_PARAMETRIC_GO.png)
+
+> Grey Wolf Optimizer distance between optimal values on each plot:
+
+![](distances_PARAMETRIC_GWO.png)
