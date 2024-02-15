@@ -15,7 +15,8 @@
 - [Schaffer1 fucntion](#Schaffer1-fucntion)
 - [Schaffer2 fucntion](#Schaffer2-fucntion)
 - [Rastrigin fucntion](#Rastrigin-fucntion)
-- [Rastrigin3d fucntion](#Rastrigin3d-fucntion) 
+- [Rastrigin3d fucntion](#Rastrigin3d-fucntion)
+- [Conclusion](#Conclusion) 
 
 
 -----
@@ -36,6 +37,7 @@ Rastrigin | $f(0,0)=0$ | $f(0.005390707255664928, 7.812619211122751e-05)=0.00576
 Rastrigin-3d | $f(0,0,0)=0$ | $f(7.812619211122751e-05, 7.812619211122751e-05, -7.812619211122751e-05)=8.15086235483875e-06$ | $f(0.00034410760027387896, 0.0003386470018023578, -0.009189797851086909)=0.03767279048515526$
 
 //Maybe I'll run more tests with different parameters
+
 _____
 
 
@@ -70,9 +72,6 @@ $$
 > Grey Wolf Optimizer distance between optimal values on each plot:
 
 ![](distances_HARMONIC_GWO.png)
-
------
-
 
 ### Parametric function
 
@@ -385,3 +384,12 @@ $$
 > Grey Wolf Optimizer distance between optimal values on each plot:
 
 ![](distances_RASTRIGIN3_GWO.png)
+
+_____
+
+### Conclusion
+
+1. GO seems to work better on large search spaces
+2. GWO converges faster
+3. On smaller problems GWO might work faster since binary crosover takes more time to compute
+
