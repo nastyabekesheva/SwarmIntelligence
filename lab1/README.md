@@ -148,3 +148,67 @@ $$
 > Grey Wolf Optimizer distance between optimal values on each plot:
 
 ![](distances_ACKLEY_GWO.png)
+
+### Cross-in-tray function
+
+$$
+f(x, y) = -0.0001\left(\eft|\sin x\sin y e^{\eft|100-\frac{\sqrt{x^2+y^2}}{\pi}\right|}\right|+1\right)0.1,\> (x,y)\in\[-10,10\]^2
+$$
+
+**Expected minimum**: $$f(1.34941,1.34941)=−2.06261,\>f(1.34941,-1.34941)=−2.06261,\>f(-1.34941,1.34941)=−2.06261,\>f(-1.34941,-1.34941)=−2.06261$$
+
+> Genetic Optimizer plot on each epoch:
+
+![](animated_CROSS_IN_TRAY_GO.gif) 
+
+> Grey Wolf Optimizer plot on each epoch:
+
+![](animated_CROSS_IN_TRAY_GWO.gif)
+
+> Genetic Optimizer fitness trend plot:
+
+![](fitness_trend_CROSS_IN_TRAY_GO.png)
+
+> Grey Wolf Optimizer fitness trend plot:
+
+![](fitness_trend_CROSS_IN_TRAY_GWO.png)
+
+> Genetic Optimizer distance between optimal values on each plot:
+
+![](distances_CROSS_IN_TRAY_GO.png)
+
+> Grey Wolf Optimizer distance between optimal values on each plot:
+
+![](distances_CROSS_IN_TRAY_GWO.png)
+
+### Eggholder function
+
+$$
+f(x, y) = -(y+47)\sin\sqrt{\left|\frac{x}{2}+y+47\right|}-x\sin\sqrt{|x-y-47|},\> (x,y)\in\[-512,512\]^2
+$$
+
+**Expected minimum**: $$f(512,404.2319)=−-959.6407$$
+
+> Genetic Optimizer plot on each epoch:
+
+![](animated_EGGHOLDER_GO.gif) 
+
+> Grey Wolf Optimizer plot on each epoch:
+
+![](animated_EGGHOLDER_GWO.gif)
+
+> Genetic Optimizer fitness trend plot:
+
+![](fitness_trend_EGGHOLDER_GO.png)
+
+> Grey Wolf Optimizer fitness trend plot:
+
+![](fitness_trend_EGGHOLDER_GWO.png)
+
+> Genetic Optimizer distance between optimal values on each plot:
+
+![](distances_EGGHOLDER_GO.png)
+
+> Grey Wolf Optimizer distance between optimal values on each plot:
+
+![](distances_EGGHOLDER_GWO.png)
