@@ -28,15 +28,24 @@ $$
 
 > Genetic Optimizer plot on each epoch:
 
-![](animated_HARMONIC_GO.gif)  
+![](animated_HARMONIC_GO.gif) 
+
 > Grey Wolf Optimizer plot on each epoch:
 
 ![](animated_HARMONIC_GWO.gif)
+
 > Genetic Optimizer fitness trend plot:
+
 ![](fitness_trend_HARMONIC_GO.png)
+
 > Grey Wolf Optimizer fitness trend plot:
+
 ![](fitness_trend_HARMONIC_GWO.png)
+
 > Genetic Optimizer distance between optimal values on each plot:
+
 ![](distances_HARMONIC_GO.png)
+
 > Grey Wolf Optimizer distance between optimal values on each plot:
+
 ![](distances_HARMONIC_GWO.png)
