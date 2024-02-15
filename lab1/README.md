@@ -12,10 +12,10 @@
 - [Cross-in-tray function](#Cross-in-tray-function)
 - [Eggholder function](#Eggholder-function)
 - [Holder functiion](#Holder-function)
-- [Schaffer-1 fucntion](#Schaffer-1-fucntion)
-- [Schaffer-2 fucntion](#Schaffer-2-fucntion)
+- [Schaffer1 fucntion](#Schaffer1-fucntion)
+- [Schaffer2 fucntion](#Schaffer2-fucntion)
 - [Rastrigin fucntion](#Rastrigin-fucntion)
-- [Rastrigin-3d fucntion](#Rastrigin-3d-fucntion) 
+- [Rastrigin3d fucntion](#Rastrigin3d-fucntion) 
 
 
 -----
@@ -266,7 +266,7 @@ $$
 
 ![](distances_HOLDER_GWO.png)
 
-### Schaffer-1 function
+### Schaffer1 function
 
 $$
 f(x, y) = \frac{1}{2}+\frac{\sin^2(x^2+y^2)-\frac{1}{2}}{(1+0.001(x^2+y^2))^2}, (x,y)\in\[-10,10\]^2
@@ -298,7 +298,7 @@ $$
 
 ![](distances_SCHAFFER1_GWO.png)
 
-### Schaffer-2 function
+### Schaffer2 function
 
 $$
 f(x, y) = \frac{1}{2}+\frac{\cos(\sin^2|x^2-y^2|)-\frac{1}{2}}{(1+0.001(x^2+y^2))^2}, (x,y)\in\[-100,100\]^2
@@ -333,7 +333,7 @@ $$
 ### Rastrigin function
 
 $$
-f(x_1, x_2) = 20+\sum\limits_{i=1}^n(x_i^2-10\cos(2\pi x_i)), (x,y)\in\[-5.12,5.12\]^2
+f(x_1, x_2) = 20+\sum\limits_{i=1}^n(x_i^2-10\cos(2\pi x_i)), (x_1, x_2)\in\[-5.12,5.12\]^2
 $$
 
 **Expected global minimum**: $$f(0,0)=0$$
@@ -362,10 +362,10 @@ $$
 
 ![](distances_RASTRIGIN_GWO.png)
 
-### Rastrigin-3d function
+### Rastrigin3d function
 
 $$
-f(x_1, x_2, x_3) = 30+\sum\limits_{i=1}^n(x_i^2-10\cos(3\pi x_i)), (x,y)\in\[-5.12,5.12\]^3
+f(x_1, x_2, x_3) = 30+\sum\limits_{i=1}^n(x_i^2-10\cos(3\pi x_i)), (x_1, x_2, x_3)\in\[-5.12,5.12\]^3
 $$
 
 **Expected global minimum**: $$f(0,0,0)=0$$
