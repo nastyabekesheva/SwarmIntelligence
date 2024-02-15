@@ -6,10 +6,10 @@ def harmonic(x):
 def parametric(x):
     return - (0.2-x) ** 5 * (0.8-x) ** 12 * np.sin(12*np.pi * x) * np.sin(9*np.pi * x)
 
-def izum(x, y):
+def easom(x, y):
     return -np.cos(x) * np.cos(y) * np.exp(-(x-np.pi) ** 2 -(y-np.pi) ** 2)
 
-def erkli(x, y):
+def ackley(x, y):
     return -20*np.exp(-0.2 * np.sqrt(0.5*(x**2+y**2))) - np.exp(0.5 * (np.cos(2*np.pi*x)+np.cos(2*np.pi*y))) + np.exp(1) +20
 
 def cross_in_tray(x, y):
@@ -26,3 +26,9 @@ def schaffer1(x, y):
 
 def schaffer2(x, y):
     return 0.5 + (np.cos(np.abs(x**2-y**2))**2-0.5) / (1+0.001*(x**2+y**2)) ** 2
+
+def rastrigin2d(x, y):
+    return 20+x**2-10*np.cos(2*np.pi*x)+y**2-10*np.cos(2*np.pi*y)
+
+def rastrigin3d(x, y, z):
+    return 30+x**2-10*np.cos(3*np.pi*x)+y**2-10*np.cos(3*np.pi*y)+z**2-10*np.cos(3*np.pi*z)
