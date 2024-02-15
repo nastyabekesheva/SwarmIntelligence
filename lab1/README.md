@@ -27,8 +27,10 @@ $$
 **Expected minimum**: $$f(1.15)=-33$$
 
 > Genetic Optimizer plot on each epoch:
+
 ![](animated_HARMONIC_GO.gif)  
 > Grey Wolf Optimizer plot on each epoch:
+
 ![](animated_HARMONIC_GWO.gif)
 > Genetic Optimizer fitness trend plot:
 ![](fitness_trend_HARMONIC_GO.png)
