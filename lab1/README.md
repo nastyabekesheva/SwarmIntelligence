@@ -330,7 +330,7 @@ $$
 ### Rastrigin function
 
 $$
-f(x1, x2) = 20+\sum\limits_{i=1}^n(x_i^2-10\cos(2\pi x_i)), (x,y)\in\[-5,5\]^2
+f(x_1, x_2) = 20+\sum\limits_{i=1}^n(x_i^2-10\cos(2\pi x_i)), (x,y)\in\[-5,5\]^2
 $$
 
 **Expected global minimum**: $$f(0,0)=0$$
