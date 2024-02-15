@@ -4,6 +4,7 @@
 
 ## Table of Contents
 
+- [Results](#Results)
 - [Harmonic function](#Harmonic-function)
 - [Parametric function](#Parametric-function)
 - [Easom function](#Easom-function)
@@ -17,6 +18,22 @@
 
 -----
 
+### Results
+Function | Expected values | Genetic Optimizer | Grey Wolf Optimizer |
+:--------:|:----------------:|:-----------------:|:--------------------:
+Harmonic| $f(1.15)=-33$ | $f(1.1494621194781416)=-32.95428405521445$ | 
+Parametric | $f(3)=1.5\cdot 10^{-6}$ | $f(2.951476310368505)=-1470115.6891036548$ | 
+Easom | $f(\pi,\pi)=-1$ | $f(3.1418326085298105, 3.0807965209429966)=-0.9944698672133057$ |
+Ackley | $f(0,0)=0$ | $f(-7.629510948348184e-05, 0.014267185473411104)=0.04576559559364668$ |
+Cross-in-tray | $f(\pm1.34941,\pm1.34941)=-2.06261, f(\mp1.34941,\mp1.34941)=-2.06261$ | $f(1.3401998931868455, 1.3487449454489955)=-2.0626019956335515$
+Eggholder | $f(512,404.2319)=−959.6407$ | $f(482.5620508125429, 433.13942168307017)=-956.8413773559901$ | 
+Holder | $f(\pm8.05502,\pm9.66459)=−19.2085,f(\mp8.05502,\mp9.66459)=−19.2085$ | $f(8.127718013275349, -9.690547035934996)=-19.148642794506788$ | 
+Schaffer-1 | $f(0,0)=0$ | $f([0.10528725108720494, -0.10528725108720494)=2.217007318755515e-05$ | 
+Schaffer-2 | $f(0,0.25313)=0.292579$ | $f(0.21515220874341878, 1.2710765239948074)=0.0016598913666932003$ |
+Rastrigin | $f(0,0)=0$ | $f(0.005390707255664928, 7.812619211122751e-05)=0.005765882018769375$ | 
+
+_____
+
 
 ### Harmonic function
 
@@ -24,7 +41,7 @@ $$
 f(x) = x^3(3-x)^5\sin(10\pi x), x\in[0,3]
 $$
 
-**Expected minimum**: $$f(1.15)=-33$$
+**Expected global minimum**: $$f(1.15)=-33$$
 
 > Genetic Optimizer plot on each epoch:
 
@@ -59,7 +76,7 @@ $$
 f(x) = -(0.2-x)^5(0.8-x)^12\sin(12\pi x)\sin(9\pi x), x\in[0,3]
 $$
 
-**Expected minimum**: $$f(3)=1.5\cdot 10^{-6}$$
+**Expected global minimum**: $$f(3)=1.5\cdot 10^{-6}$$
 
 > Genetic Optimizer plot on each epoch:
 
@@ -91,7 +108,7 @@ $$
 f(x, y) = -\cos(x)\cos(y)e^{-(x-\pi)^2-(y-\pi)^2}, (x,y)\in\[-100,100\]^2
 $$
 
-**Expected minimum**: $$f(\pi,\pi)=-1$$
+**Expected global minimum**: $$f(\pi,\pi)=-1$$
 
 > Genetic Optimizer plot on each epoch:
 
@@ -123,7 +140,7 @@ $$
 f(x, y) = -20e^{-0.2\sqrt{0.5(x^2+y^2)}} - e^{0.5(\cos2\pi x+\cos2\pi y)}, (x,y)\in\[-5,5\]^2
 $$
 
-**Expected minimum**: $$f(0,0)=0$$
+**Expected global minimum**: $$f(0,0)=0$$
 
 > Genetic Optimizer plot on each epoch:
 
@@ -155,7 +172,7 @@ $$
 f(x, y) = -0.0001\left(\eft|\sin x\sin y e^{\left|100-\frac{\sqrt{x^2+y^2}}{\pi}\right|}\right|+1\right)0.1, (x,y)\in\[-10,10\]^2
 $$
 
-**Expected minimum**: $$f(1.34941,1.34941)=−2.06261, f(1.34941,-1.34941)=−2.06261, f(-1.34941,1.34941)=−2.06261, f(-1.34941,-1.34941)=−2.06261$$
+**Expected global minimum**: $$f(1.34941,1.34941)=−2.06261, f(1.34941,-1.34941)=−2.06261, f(-1.34941,1.34941)=−2.06261, f(-1.34941,-1.34941)=−2.06261$$
 
 > Genetic Optimizer plot on each epoch:
 
@@ -187,7 +204,7 @@ $$
 f(x, y) = -(y+47)\sin\sqrt{\left|\frac{x}{2}+y+47\right|}-x\sin\sqrt{|x-y-47|}, (x,y)\in\[-512,512\]^2
 $$
 
-**Expected minimum**: $$f(512,404.2319)=−959.6407$$
+**Expected global minimum**: $$f(512,404.2319)=−959.6407$$
 
 > Genetic Optimizer plot on each epoch:
 
@@ -219,7 +236,7 @@ $$
 f(x, y) = -\left|\sin x\cos y e^{\left|1-\frac{\sqrt{x^2+y^2}}{\pi}\right|}\right|, (x,y)\in\[-10,10\]^2
 $$
 
-**Expected minimum**: $$f(8.05502,9.66459)=−19.2085, f(8.05502,-9.66459)=−19.2085, f(-8.05502,9.66459)=−19.2085, f(-8.05502,-9.66459)=−19.2085$$
+**Expected global minimum**: $$f(8.05502,9.66459)=−19.2085, f(8.05502,-9.66459)=−19.2085, f(-8.05502,9.66459)=−19.2085, f(-8.05502,-9.66459)=−19.2085$$
 
 > Genetic Optimizer plot on each epoch:
 
@@ -251,7 +268,7 @@ $$
 f(x, y) = \frac{1}{2}+\frac{\sin^2(x^2+y^2)-\frac{1}{2}}{(1+0.001(x^2+y^2))^2}, (x,y)\in\[-10,10\]^2
 $$
 
-**Expected minimum**: $$f(0,0)=0$$
+**Expected global minimum**: $$f(0,0)=0$$
 
 > Genetic Optimizer plot on each epoch:
 
@@ -283,7 +300,7 @@ $$
 f(x, y) = \frac{1}{2}+\frac{\cos(\sin^2|x^2-y^2|)-\frac{1}{2}}{(1+0.001(x^2+y^2))^2}, (x,y)\in\[-100,100\]^2
 $$
 
-**Expected minimum**: $$f(0,0.25313)=0.292579$$
+**Expected global minimum**: $$f(0,0.25313)=0.292579$$
 
 > Genetic Optimizer plot on each epoch:
 
