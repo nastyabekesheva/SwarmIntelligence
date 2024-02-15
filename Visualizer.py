@@ -37,11 +37,10 @@ class Visualizer:
         plt.close(fig)
         
     def distances(self):
-
-        best_fitness =  np.array([self.func(*args) for args in self.best])
+        #best_fitness =  np.array([self.func(*args) for args in self.best])
 
         fig = plt.figure()
-        distance = np.diff(best_fitness)
+        distance = np.diff(self.best)
 
         # Plot the differences
         plt.plot(distance)
@@ -128,3 +127,4 @@ class Visualizer:
 
         # Generate GIF from plots
         imageio.mimsave(f'./animated_{self.filename}.gif', [plot_growth(i) for i in range(len(self.population))], fps=self.fps)
+
