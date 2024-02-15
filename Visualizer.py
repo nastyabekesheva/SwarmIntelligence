@@ -56,7 +56,6 @@ class Visualizer:
 
     def __1d_animate_growth__(self):
         def plot_growth(i):
-            #plt.figure(figsize=(12, 6))
             fig, ax = plt.subplots(figsize=(10,5))
             # Plot population
             x_population = self.population[i][0]
@@ -82,7 +81,8 @@ class Visualizer:
     
     def __2d_animate_growth__(self):
         def plot_growth(i):
-            fig = plt.figure(figsize=(10, 5))
+            fig = plt.figure(figsize=(35, 10))
+            fig.suptitle('Epoch {}'.format(i),  x=0.42, y=0.95)
             ax = fig.add_subplot(111, projection='3d')
 
             # Access population data for the i-th iteration
@@ -91,7 +91,7 @@ class Visualizer:
             z_fitness = self.fitness[i]
 
             # Plot population
-            ax.scatter(x_population, y_population, zs=z_fitness, c='b', label='Fitness')
+            ax.scatter(x_population, y_population, zs=z_fitness, c='r', label='Fitness')
 
             # Plot 3D function surface
             x = np.linspace(self.interval[0][0], self.interval[0][1], 100)
@@ -100,16 +100,29 @@ class Visualizer:
             Z = self.func(X, Y)
             ax.plot_surface(X, Y, Z, cmap='viridis', alpha=0.5)
 
-            ax.set_title('Epoch {}'.format(i+1))
-            ax.set_xlabel('Population')
-            ax.set_ylabel('Fitness')
-            ax.set_zlabel(f'{self.filename}')
+            ax.set_xlabel('Population - x')
+            ax.set_ylabel('Population - y')
+            ax.set_zlabel('Fitness')
             ax.legend()
+
+
+            # Change the viewing angle
+            ax.view_init(elev=73, azim=0)   
+            ax = fig.add_subplot(121, projection='3d')   
+            ax.scatter(x_population, y_population, zs=z_fitness, c='r', label='Fitness')   
+            ax.plot_surface(X, Y, Z, cmap='viridis', alpha=0.5)
+
+            ax.set_xlabel('Population - x')
+            ax.set_ylabel('Population - y')
+            ax.set_zlabel('Fitness')
+            ax.legend()
+
 
             # Convert the plot to an image
             fig.canvas.draw()
             image = np.frombuffer(fig.canvas.tostring_rgb(), dtype='uint8')
             image = image.reshape(fig.canvas.get_width_height()[::-1] + (3,))
+            image =  image[:, 680:2200, :]
             plt.close(fig)  # Close the figure to prevent memory leak
             return image
 
