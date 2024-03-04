@@ -1,5 +1,5 @@
 import random
-import math
+import numpy as np
 
 class ParticleSwarmOptimizer:
     def __init__(self, fitness, x_min, x_max, v_min, v_max, alpha1=0.5, alpha2=0.5, epochs=10, population_size=2, dimensions=1, patience=None):
@@ -18,7 +18,7 @@ class ParticleSwarmOptimizer:
         self.dimensions = dimensions 
         self.patience = patience
         self._best = []
-        self._meta = {"population": [], "fitness": []}
+        self._meta = {"population": [], "fitness": [], "best_fitness": []}
 
     def fit(self):
         population = []
@@ -48,7 +48,16 @@ class ParticleSwarmOptimizer:
             star = population[self.__get_fittest_individual__(population)]
             if self.fitness(*star) <= self.fitness(*population_star):
                 population_star = star
+            self._meta["best_fitness"].append(self.fitness(*population_star))
             n += 1
+            
+            self._meta["population"].append(np.transpose(np.array(population)))
+            fitness = []
+            for args in population:
+                result = self.fitness(*args)
+                fitness.append(result)
+            self._meta["fitness"].append(fitness)
+
 
         return(population_star)
         
@@ -94,12 +103,3 @@ class ParticleSwarmOptimizer:
             x.append(xi)
         return x, velocity
         
-def rosenbrock(x, y):
-    f = (1-x)**2+100*(y-x**2)**2
-    if (x-1)**3-y+1<0 or x+y-2<0:
-        f = float('inf')
-
-    return f
-
-PSO = ParticleSwarmOptimizer(rosenbrock, [-1.5, -0.5], [1.5, 2.5], [1, 1], [5, 5], epochs=50, population_size=10, dimensions=2)
-print(PSO.fit())

@@ -1,5 +1,6 @@
 import random
 import math
+import numpy as np
 
 class FireFliesOptimizer:
     def __init__(self, fitness, x_min, x_max, beta_max=0.5, gamma=0.5, alpha=0.5, epochs=10, population_size=2, dimensions=1, patience=None):
@@ -20,7 +21,7 @@ class FireFliesOptimizer:
         self._meta = {"population": [], "fitness": []}
 
     def fit(self):
-        x_star = [(self.x_min[i]+(self.x_max[i]-self.x_min[i])*random.uniform(0, 1)) for i in range(self.dimensions)]
+        population_star = [(self.x_min[i]+(self.x_max[i]-self.x_min[i])*random.uniform(0, 1)) for i in range(self.dimensions)]
         population = []
 
         i = 0
@@ -38,6 +39,8 @@ class FireFliesOptimizer:
                 beta = self.beta_max*math.exp(-self.gamma*(self.fitness(*population[l])-self.fitness(*population[k]))**2)
                 for i in range(self.dimensions):
                     population[k][i] = population[k][i]+beta*(population[l][i]-population[k][i])+self.alpha*(random.uniform(0, 1)-0.5)
+                    population[k][i] = max(self.x_min[i], population[k][i])
+                    population[k][i] = min(self.x_max[i], population[k][i])
             if l < self.population_size - 1:
                 l += 1
             elif k < self.population_size - 1:
@@ -45,12 +48,20 @@ class FireFliesOptimizer:
                 l = 0
 
             best = self.__get_fittest_individual__(population)
-            if self.fitness(*population[best]) <= self.fitness(*x_star):
-                x_star = population[best]
+            if self.fitness(*population[best]) <= self.fitness(*population_star):
+                population_star = population[best]
+            self._meta["best_fitness"].append(self.fitness(*population_star))
+
+            self._meta["population"].append(np.transpose(np.array(population)))
+            fitness = []
+            for args in population:
+                result = self.fitness(*args)
+                fitness.append(result)
+            self._meta["fitness"].append(fitness)
 
             n += 1
 
-        return x_star
+        return population_star
 
             
 
@@ -65,12 +76,3 @@ class FireFliesOptimizer:
         min_pos = fitness.index(min(fitness))
         return min_pos
     
-def rosenbrock(x, y):
-    f = (1-x)**2+100*(y-x**2)**2
-    if (x-1)**3-y+1<0 or x+y-2<0:
-        f = float('inf')
-
-    return f
-
-FFO = FireFliesOptimizer(rosenbrock, [-1.5, -0.5], [1.5, 2.5], population_size=10, epochs=100, dimensions = 2)
-print(FFO.fit())

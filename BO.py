@@ -1,12 +1,9 @@
 import random
+import numpy as np
 
 class BeeOptimizer:
     def __init__(self, fitness, num_areas, num_elite_areas, elite_area_size, area_size, x_min, x_max, delta=0.5, eta_max=0.5, alpha=0.5, epochs=10, population_size=2, dimensions=1, patience=None):
-        #population_size must be even
-        if population_size % 2 != 0:
-            print("Population size must be even")
-            return None
-        elif delta >= 1 or delta <= 0 or eta_max >= 1 or eta_max <= 0 or alpha >= 1 or alpha <= 0:
+        if delta >= 1 or delta <= 0 or eta_max >= 1 or eta_max <= 0 or alpha >= 1 or alpha <= 0:
             print("Incorrect parameters")
             return None
         self.fitness = fitness
@@ -20,14 +17,14 @@ class BeeOptimizer:
         self.epochs = epochs
         self.eta_max = eta_max
         self.alpha = alpha
-        self.population_size =  int(2 * (population_size / 2 ))   
+        self.population_size =  population_size 
         self.dimensions = dimensions 
         self.patience = patience
         self._best = []
         self._meta = {"population": [], "fitness": []}
 
     def fit(self):
-        x_star = [(self.x_min[i]+(self.x_max[i]-self.x_min[i])*random.uniform(0, 1)) for i in range(self.dimensions)]
+        population_star = [(self.x_min[i]+(self.x_max[i]-self.x_min[i])*random.uniform(0, 1)) for i in range(self.dimensions)]
         population = []
         i = 0
         while i < self.population_size:
@@ -39,13 +36,23 @@ class BeeOptimizer:
         n = 0
         while n <= self.epochs:
             best = population[self.__get_fittest_individual__(population)]
-            if self.fitness(*best) <= self.fitness(*x_star):
-                x_star = best
+            if self.fitness(*best) <= self.fitness(*population_star):
+                population_star = best
+
+            self._meta["best_fitness"].append(self.fitness(*population_star))
+
             population = self.__sort__(population)
             population = self.__bee_workers__(n , population) + self.__bee_scouts__()
             n += 1
 
-        return x_star
+            self._meta["population"].append(np.transpose(np.array(population)))
+            fitness = []
+            for args in population:
+                result = self.fitness(*args)
+                fitness.append(result)
+            self._meta["fitness"].append(fitness)
+
+        return population_star
 
 
     def __get_fittest_individual__(self, population):
@@ -98,14 +105,3 @@ class BeeOptimizer:
     
     def __bee_scouts__(self):
         return [[(self.x_min[i]+(self.x_max[i]-self.x_min[i])*random.uniform(0, 1)) for i in range(self.dimensions)] for _ in range(self.num_areas, self.population_size)]
-
-
-def rosenbrock(x, y):
-    f = (1-x)**2+100*(y-x**2)**2
-    if (x-1)**3-y+1<0 or x+y-2<0:
-        f = float('inf')
-
-    return f
-
-BO = BeeOptimizer(rosenbrock, 8, 2, 2, 8, [-1.5, -0.5], [1.5, 2.5], 0.2, 0.3, 0.4, 50, 10, 2)
-print(BO.fit())
