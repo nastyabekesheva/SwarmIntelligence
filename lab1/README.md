@@ -12,8 +12,11 @@
 - [Cross-in-tray function](#Cross-in-tray-function)
 - [Eggholder function](#Eggholder-function)
 - [Holder functiion](#Holder-function)
-- [Schaffer-1 fucntion](#Schaffer-1-fucntion)
-- [Schaffer-2 fucntion](#Schaffer-2-fucntion)  
+- [Schaffer1 fucntion](#Schaffer1-fucntion)
+- [Schaffer2 fucntion](#Schaffer2-fucntion)
+- [Rastrigin fucntion](#Rastrigin-fucntion)
+- [Rastrigin3d fucntion](#Rastrigin3d-fucntion)
+- [Conclusion](#Conclusion) 
 
 
 -----
@@ -31,8 +34,10 @@ Holder | $f(\pm8.05502,\pm9.66459)=−19.2085,f(\pm8.05502,\mp9.66459)=−19.208
 Schaffer-1 | $f(0,0)=0$ | $f([0.10528725108720494, -0.10528725108720494)=2.217007318755515e-05$ | $f(-1.5012513145301618, -1.5013506330865882)=0.004477599025718315$
 Schaffer-2 | $f(0,0.25313)=0.292579$ | $f(0.21515220874341878, 1.2710765239948074)=0.0016598913666932003$ | $f(0.25481509741593006, -1.2787603023170622)=0.0016960809489836581$
 Rastrigin | $f(0,0)=0$ | $f(0.005390707255664928, 7.812619211122751e-05)=0.005765882018769375$ | $f(0.0047545949724107145, 0.00034775283313163985)=0.004508546026645632$
+Rastrigin-3d | $f(0,0,0)=0$ | $f(7.812619211122751e-05, 7.812619211122751e-05, -7.812619211122751e-05)=8.15086235483875e-06$ | $f(0.00034410760027387896, 0.0003386470018023578, -0.009189797851086909)=0.03767279048515526$
 
 //Maybe I'll run more tests with different parameters
+
 _____
 
 
@@ -67,9 +72,6 @@ $$
 > Grey Wolf Optimizer distance between optimal values on each plot:
 
 ![](distances_HARMONIC_GWO.png)
-
------
-
 
 ### Parametric function
 
@@ -263,7 +265,7 @@ $$
 
 ![](distances_HOLDER_GWO.png)
 
-### Schaffer-1 function
+### Schaffer1 function
 
 $$
 f(x, y) = \frac{1}{2}+\frac{\sin^2(x^2+y^2)-\frac{1}{2}}{(1+0.001(x^2+y^2))^2}, (x,y)\in\[-10,10\]^2
@@ -295,7 +297,7 @@ $$
 
 ![](distances_SCHAFFER1_GWO.png)
 
-### Schaffer-2 function
+### Schaffer2 function
 
 $$
 f(x, y) = \frac{1}{2}+\frac{\cos(\sin^2|x^2-y^2|)-\frac{1}{2}}{(1+0.001(x^2+y^2))^2}, (x,y)\in\[-100,100\]^2
@@ -330,7 +332,7 @@ $$
 ### Rastrigin function
 
 $$
-f(x_1, x_2) = 20+\sum\limits_{i=1}^n(x_i^2-10\cos(2\pi x_i)), (x,y)\in\[-5,5\]^2
+f(x_1, x_2) = 20+\sum\limits_{i=1}^n(x_i^2-10\cos(2\pi x_i)), (x_1, x_2)\in\[-5.12,5.12\]^2
 $$
 
 **Expected global minimum**: $$f(0,0)=0$$
@@ -358,3 +360,36 @@ $$
 > Grey Wolf Optimizer distance between optimal values on each plot:
 
 ![](distances_RASTRIGIN_GWO.png)
+
+### Rastrigin3d function
+
+$$
+f(x_1, x_2, x_3) = 30+\sum\limits_{i=1}^n(x_i^2-10\cos(3\pi x_i)), (x_1, x_2, x_3)\in\[-5.12,5.12\]^3
+$$
+
+**Expected global minimum**: $$f(0,0,0)=0$$
+
+> Genetic Optimizer fitness trend plot:
+
+![](fitness_trend_RASTRIGIN3_GO.png)
+
+> Grey Wolf Optimizer fitness trend plot:
+
+![](fitness_trend_RASTRIGIN3_GWO.png)
+
+> Genetic Optimizer distance between optimal values on each plot:
+
+![](distances_RASTRIGIN3_GO.png)
+
+> Grey Wolf Optimizer distance between optimal values on each plot:
+
+![](distances_RASTRIGIN3_GWO.png)
+
+_____
+
+### Conclusion
+
+1. GO seems to work better on large search spaces
+2. GWO converges faster
+3. On smaller problems GWO might work faster since binary crosover takes more time to compute
+
