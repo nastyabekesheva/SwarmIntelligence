@@ -18,7 +18,7 @@ class FireFliesOptimizer:
         self.dimensions = dimensions 
         self.patience = patience
         self._best = []
-        self._meta = {"population": [], "fitness": []}
+        self._meta = {"population": [], "fitness": [], "best_fitness": []}
 
     def fit(self):
         population_star = [(self.x_min[i]+(self.x_max[i]-self.x_min[i])*random.uniform(0, 1)) for i in range(self.dimensions)]

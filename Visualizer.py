@@ -22,12 +22,17 @@ class Visualizer:
             print("Too many dimensions")
 
     def fitness_trend(self):
-        fitness = np.array(self.fitness)
-        fitness = fitness.T
+        #fitness = np.array(self.fitness)
+        #fitness = fitness.T
 
         fig = plt.figure()
-        for i in range(len(fitness)):
-            plt.plot(fitness[i])
+        #for i in range(len(fitness)):
+            #print(min(fitness[i]), i)
+            #plt.scatter(i, min(fitness[i]))
+        minf = []
+        for i in self.fitness:
+            minf.append(min(i))
+        plt.plot(self.best)
 
         # Add labels and title
         plt.xlabel('Epoch')
@@ -41,6 +46,7 @@ class Visualizer:
 
         fig = plt.figure()
         distance = np.diff(self.best)
+        distance = [abs(i) for i in distance]
 
         # Plot the differences
         plt.plot(distance)

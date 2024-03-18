@@ -77,7 +77,7 @@ class GreyWolfOptimizer:
 
         return new_population
 
-    def __get_fitnes__(self, population):
+    def __get_fitnesS__(self, population):
         fitness = []
         for args in zip(*population):
             result = self.fitness(*args)
