@@ -1,4 +1,5 @@
 import math
+import random
 
 class CircleDotsGenerator:
     def __init__(self, radius=1, n=10):
@@ -18,3 +19,22 @@ class CircleDotsGenerator:
             dots.append((x, y))
 
         return dots
+
+class KnapsackGenerator:
+    def __init__(self, num_items, capacity):
+        self.num_items = max(20, num_items)
+        self.capacity = capacity
+
+    def generate_data(self):
+        weights = []
+        total_weight = 0
+        while total_weight <= self.capacity:
+            weight = random.randint(1, 20)  
+            if total_weight + weight > self.capacity:
+                break
+            weights.append(weight)
+            total_weight += weight
+
+        values = [random.randint(1, 50) for _ in range(len(weights))]  
+        return weights, values
+
