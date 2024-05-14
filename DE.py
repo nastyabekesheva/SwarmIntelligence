@@ -16,7 +16,8 @@ class DifferentialEvolution:
         
         population = np.random.uniform(low=self.bounds[:, 0], high=self.bounds[:, 1], size=(self.population_size, n))
         
-        for _ in range(self.epochs):
+        for i in range(self.epochs):
+            #print("epoch ", i)
             new_population = np.zeros_like(population)
             for i in range(self.population_size):
                 target = population[i]
@@ -47,7 +48,7 @@ class DifferentialEvolution:
         best_solution_idx = np.argmin([self.objective_function(individual) for individual in population])
         best_solution = population[best_solution_idx]
         best_fitness = self.objective_function(best_solution)
-        return best_solution, best_fitness
+        return best_solution, best_fitness, self.best_fitnesses
     
     def plot_fitness(self):
         plt.figure()
